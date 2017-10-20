@@ -1,0 +1,115 @@
+
+<!-- import polymer-element -->
+<link rel="import"  href="https://polygit.org/components/polymer/polymer-element.html">
+
+<dom-module id="peum-button">
+  <template >
+
+  <style>
+
+  #cf {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    border-radius: 150px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 2px solid #cccccc;
+    background-color: #393939;
+    font-family: Verdana,sans-serif;
+    font-size: 0.9em;
+  }
+
+  @media all and (max-width: 800px) {
+    #cf {
+      margin: 0em 0em 0 0;
+    }
+  }
+
+  #cf img {
+    vertical-align: bottom;
+    cursor: pointer;
+    position: absolute;
+    width: 75px;
+    left: 37px;
+    top: 20px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+  }
+
+  #cf img.bottom {
+    top:15px;
+  }
+
+  #cf:hover img.top {
+    opacity: 0;
+  }
+
+  #cf img.bottom {
+    opacity: 0;
+  }
+
+  #cf:hover img.bottom {
+    opacity: 1;
+  }
+
+  #cf:hover {
+    border: 2px solid #aaaacc;
+    -webkit-box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.8);
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.8);
+  }
+
+  #cf p {
+    color: #fafafa;
+    text-align: center;
+    position: relative;
+    top: 60%;
+    vertical-align: middle;
+  }
+
+
+  </style>
+
+  <div id="container">
+    <div on-click="goToWeb" id="cf"  >
+      <img class="bottom" src="img/person.png" >
+      <img src="[[data-img]]" class="top" >
+      <p>{{btn-caption}}</p>
+      </div>
+    </div>
+  </template>
+
+  <script type="text/javascript">
+
+  class PEUMButtonextends extends Polymer.Element {
+    static get is() { return "peum-button"; }
+
+    goToWeb (e) {
+      window.location = this["data-url"];
+    }
+
+    //configure the owner property
+    static get properties() {
+      return {
+        "btn-caption": String,
+        "data-img": String,
+        "data-url": String
+        }
+      };
+  };
+
+  customElements.define(PEUMButtonextends.is, PEUMButtonextends);
+
+  </script>
+</dom-module>
